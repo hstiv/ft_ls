@@ -2,8 +2,8 @@
 // Created by Hallie Stiv on 10/7/20.
 //
 
-#ifndef FT_LS_FT_LS_H
-# define FT_LS_FT_LS_H
+#ifndef FT_LS_H
+# define FT_LS_H
 
 # include <stdint.h>
 # include <dirent.h>
@@ -14,6 +14,10 @@
 # include <sys/xattr.h>
 # include <time.h>
 # include "libft.h"
+
+# define OPT	"lRart"
+# define USAGE	"\nusage: ft_ls [-lRart] [file ...]\n"
+# define IL_OPT	"ft_ls: illegal option -- "
 
 /*
 **_____________________Structure____________________*

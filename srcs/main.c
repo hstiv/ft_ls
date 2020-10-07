@@ -13,9 +13,11 @@ int					main(int argc, char **argv)
 {
 	t_data			ls;
 
-	if (argc > 1 && argv[1][0] == '-')
+	if (argc > 1 && argv[1] != NULL && argv[1][0] == '-')
 		option_reader(argc, argv, &ls);
-	else
+	else if (argc > 1)
 		output(argc, argv, &ls);
+	else
+
 	return (0);
 }
