@@ -27,10 +27,13 @@
 typedef struct 		s_data
 {
 	char			option[5];
+	char 			**filenames;
+	int 			file_count;
 
 }					t_data;
 
-void			set_data(t_data *data);
-void			option_reader(int argc, char **argv, t_data *data);
+void				set_data(t_data *data);
+void				option_reader(int argc, char **argv, t_data *data);
+void 				set_filename(char *s, t_data *data);
 
 #endif
