@@ -49,7 +49,7 @@ typedef struct 		s_data
 
 t_data				data;
 
-void				set_data();
+void				set_data(void);
 void				arg_reader(int argc, char **argv);
 int 				throw(char *s);
 t_file				*new_file(char *s);

@@ -1,9 +1,6 @@
-//
-// Created by Hallie Stiv on 10/7/20.
-//
 #include "ft_ls.h"
 
-static void 	option_parsing(char *s)
+static	void	option_parsing(char *s)
 {
 	while (*s)
 	{
@@ -12,7 +9,8 @@ static void 	option_parsing(char *s)
 		(*s == 'a') ? data.option[2] = 1 : 0;
 		(*s == 'r') ? data.option[3] = 1 : 0;
 		(*s == 't') ? data.option[4] = 1 : 0;
-		if (ft_strchr(OPT, (int)*s) == NULL) {
+		if (ft_strchr(OPT, (int)*s) == NULL)
+		{
 			write(1, IL_OPT, ft_strlen(IL_OPT));
 			write(1, &(*s), 1);
 			throw(USAGE);
@@ -23,7 +21,7 @@ static void 	option_parsing(char *s)
 
 void			arg_reader(int argc, char **argv)
 {
-	int 		i;
+	int			i;
 	t_file		*file;
 
 	i = 0;
