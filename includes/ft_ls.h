@@ -13,6 +13,7 @@
 # include <uuid/uuid.h>
 # include <sys/xattr.h>
 # include <time.h>
+# include <sys/errno.h>
 # include "libft.h"
 
 # define OPT	"lRart"
@@ -28,16 +29,29 @@
 **__________________________________________________*
 */
 
+extern int errno;
+
+typedef	struct		s_file
+{
+	char 			*filename;
+	void 			*prev;
+	void 			*next;
+
+}					t_file;
+
 typedef struct 		s_data
 {
 	char			option[5];
-	char 			**filenames;
+	t_file 			*file;
 	int 			file_count;
 
 }					t_data;
 
-void				set_data(t_data *data);
-void				option_reader(int argc, char **argv, t_data *data);
-void 				set_filename(char *s, t_data *data);
+t_data				data;
+
+void				set_data();
+void				arg_reader(int argc, char **argv);
+int 				throw(char *s);
+t_file				*new_file(char *s);
 
 #endif
