@@ -19,59 +19,31 @@ static	void	option_parsing(char *s)
 	}
 }
 
-void 			file_reader(char *s)
+static void 	file_reader(char *s)
 {
-	if (data.files == NULL)
+	if (data.arg_file == NULL)
 	{
-		data.files = new_file(s);
-		data.file_count++;
+		data.arg_file = new_file(s);
+		data.arg_files_count++;
 	}
 	else
 	{
-		data.files->next = new_file(s);
-		data.files->next->prev = data.files;
-		data.files = data.files->next;
-		data.file_count++;
-	}
-}
-
-void 			dir_reader(char *s)
-{
-	if (data.dirs == NULL)
-	{
-		data.dirs = new_file(s);
-		data.dir_count++;
-	}
-	else
-	{
-		data.dirs->next = new_file(s);
-		data.dirs->next->prev = data.dirs;
-		data.dirs = data.dirs->next;
-		data.dir_count++;
+		data.arg_file->next = new_file(s);
+		data.arg_file->next->prev = data.arg_file;
+		data.arg_file = data.arg_file->next;
+		data.arg_files_count++;
 	}
 }
 
 void			arg_reader(int argc, char **argv)
 {
 	int			i;
-	struct stat	file_stat;
 
 	i = 0;
 	while (++i < argc && argv[i][0] == '-')
-	{
 		option_parsing(argv[i] + 1);
-	}
 	while (i < argc)
-	{
-		stat(argv[i], &file_stat);
-		if (S_ISDIR(file_stat.st_mode))
-			dir_reader(argv[i]);
-		else
-			file_reader(argv[i]);
-		i++;
-	}
-	while (data.dir_count > 0 && data.dirs->prev != NULL)
-		data.dirs = data.dirs->prev;
-	while (data.file_count > 0 && data.files->prev != NULL)
-		data.files = data.files->prev;
+		file_reader(argv[i++]);
+	while (data.arg_files_count > 0 && data.arg_file->prev != NULL)
+		data.arg_file = data.arg_file->prev;
 }

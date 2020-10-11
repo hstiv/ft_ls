@@ -1,7 +1,3 @@
-//
-// Created by Hallie Stiv on 10/7/20.
-//
-
 #ifndef FT_LS_H
 # define FT_LS_H
 
@@ -44,9 +40,6 @@ typedef struct 		s_stat
 	char 			*day;
 	char 			*hour;
 	char 			*min;
-	char 			*name;
-	struct	s_stat	*next;
-	struct	s_stat	*prev;
 }					t_stat;
 
 typedef	struct		s_file
@@ -62,23 +55,31 @@ typedef struct 		s_data
 {
 	char			option[5];
 	int 			alley_mlen[3];
-	t_file 			*files;
-	t_file			*dirs;
-	int 			file_count;
-	int				dir_count;
-	t_stat			*f_stat;
+	t_file 			*arg_file;
+	int				arg_files_count;
+	int 			arg_dir_count;
 }					t_data;
 
+typedef	struct		s_stack
+{
+	t_file			*file;
+	struct s_stack	*next;
+}					t_stack;
+
+
 t_data				data;
+t_stack				*stack;
 
 void				set_data(void);
 void				arg_reader(int argc, char **argv);
 int 				throw(char *s);
 t_file				*new_file(char *s);
-t_stat				*new_tstat(void);
-void 				read_dir(DIR *dirp);
-void 				sort_files(void);
-void 				put_stats(t_stat *f_st, struct stat file_stat);
+t_stat				*new_tstat(struct stat file_stat);
+t_file				*read_dir(char *path);
+void 				sort_files(t_file *files);
+void				add_stack(t_file *file);
+
+
 
 
 #endif
