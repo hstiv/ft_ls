@@ -83,9 +83,8 @@ int 				throw(char *s);
 t_file				*new_file(char *s);
 t_stat				*new_tstat(struct stat file_stat);
 t_file				*read_dir(char *path);
-void 				sort(t_file *files, int order, int sort_by);
+void 				sort(t_file *files, int sort_by);
 void				add_stack(t_file *file);
-t_file				*reverse_list(t_file *head);
 void				print(t_file *start);
 void 				print_l(t_file *file);
 t_file				*only_dirs(t_file *head);
@@ -93,5 +92,6 @@ void				del_file(t_file *node);
 void				swap_files(t_file *p1, t_file *p2);
 size_t 				num_len(int n);
 void 				print_n_times(char c, int n);
+void 				arg_handler(void);
 
 #endif

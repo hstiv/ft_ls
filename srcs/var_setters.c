@@ -34,8 +34,6 @@ int				throw(char *s)
 
 void				del_file(t_file *node)
 {
-	free(node->f_stat->pw_name);
-	free(node->f_stat->gr_name);
 	free(node->f_stat->month);
 	free(node->f_stat->day);
 	free(node->f_stat->hour);

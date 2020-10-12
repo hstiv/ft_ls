@@ -27,11 +27,12 @@ void 				print_l(t_file *file)
 	write(1, file->f_stat->month, ft_strlen(file->f_stat->month));
 	print_n_times(' ', data.alley_mlen[4] - file->f_stat->len[4]);
 	write(1, file->f_stat->day, ft_strlen(file->f_stat->day));
+	write(1, " ", 1);
 	write(1, file->f_stat->hour, 2);
 	write(1, ":", 1);
 	write(1, file->f_stat->min, 2);
+	write(1, " ", 1);
 	write(1, file->filename, ft_strlen(file->filename));
-	write(1, "\n", 1);
 }
 
 void				print(t_file *start)
@@ -39,11 +40,26 @@ void				print(t_file *start)
 	t_file			*file;
 
 	file = start;
-	while (file)
+	if (data.option[3])
 	{
-		(data.option[0] == 1) ? print_l(file) :
+		while (file->next)
+			file = file->next;
+		while (file)
+		{
+			(data.option[0] == 1) ? print_l(file) :
 			write(1, file->filename, ft_strlen(file->filename));
-		(data.option[0] == 1) ? write(1, "\n", 1) : write(1, "\t", 1);
-		file = file->next;
+			(data.option[0] == 1) ? write(1, "\n", 1) : write(1, "\t", 1);
+			file = file->prev;
+		}
+	}
+	else
+	{
+		while (file)
+		{
+			(data.option[0] == 1) ? print_l(file) :
+			write(1, file->filename, ft_strlen(file->filename));
+			(data.option[0] == 1) ? write(1, "\n", 1) : write(1, "\t", 1);
+			file = file->next;
+		}
 	}
 }
