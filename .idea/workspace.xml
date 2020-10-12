@@ -22,7 +22,9 @@
     <select />
   </component>
   <component name="CMakeRunConfigurationManager" shouldGenerate="true" shouldDeleteObsolete="true">
-    <generated />
+    <generated>
+      <config projectName="ft_ls" targetName="ft_ls" />
+    </generated>
   </component>
   <component name="CMakeSettings">
     <configurations>
@@ -31,20 +33,13 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="97a92a58-e4ec-41bd-8b4f-ac955b48366e" name="Default Changelist" comment="getting started">
-      <change afterPath="$PROJECT_DIR$/srcs/setters.c" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/srcs/stats.c" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/.gitignore" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/codeStyles/codeStyleConfig.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/ft_ls.iml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/vcs.xml" beforeDir="false" />
+      <change afterPath="$PROJECT_DIR$/srcs/print_functions.c" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Makefile" beforeDir="false" afterPath="$PROJECT_DIR$/Makefile" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/includes/ft_ls.h" beforeDir="false" afterPath="$PROJECT_DIR$/includes/ft_ls.h" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/libft/Makefile" beforeDir="false" afterPath="$PROJECT_DIR$/libft/Makefile" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/srcs/main.c" beforeDir="false" afterPath="$PROJECT_DIR$/srcs/main.c" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/srcs/option_reader.c" beforeDir="false" afterPath="$PROJECT_DIR$/srcs/option_reader.c" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/srcs/read_dir.c" beforeDir="false" afterPath="$PROJECT_DIR$/srcs/read_dir.c" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/srcs/sort.c" beforeDir="false" afterPath="$PROJECT_DIR$/srcs/sort.c" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/srcs/stats.c" beforeDir="false" afterPath="$PROJECT_DIR$/srcs/stats.c" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/srcs/var_setters.c" beforeDir="false" afterPath="$PROJECT_DIR$/srcs/var_setters.c" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -55,6 +50,7 @@
   <component name="ClangdSettings">
     <option name="formatViaClangd" value="false" />
   </component>
+  <component name="ExecutionTargetManager" SELECTED_TARGET="CMakeBuildProfile:Debug" />
   <component name="ExternalProjectsData">
     <projectState path="$PROJECT_DIR$">
       <ProjectState />
@@ -62,33 +58,6 @@
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
-  </component>
-  <component name="MakefileLocalSettings">
-    <option name="availableProjects">
-      <map>
-        <entry>
-          <key>
-            <ExternalProjectPojo>
-              <option name="name" value="ft_ls" />
-              <option name="path" value="$PROJECT_DIR$" />
-            </ExternalProjectPojo>
-          </key>
-          <value>
-            <list>
-              <ExternalProjectPojo>
-                <option name="name" value="ft_ls" />
-                <option name="path" value="$PROJECT_DIR$" />
-              </ExternalProjectPojo>
-            </list>
-          </value>
-        </entry>
-      </map>
-    </option>
-    <option name="projectSyncType">
-      <map>
-        <entry key="$PROJECT_DIR$" value="RE_IMPORT" />
-      </map>
-    </option>
   </component>
   <component name="ProjectId" id="1iY4aMl9ZABKayXNEs2kDUGAbaf" />
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
@@ -102,6 +71,8 @@
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="cf.first.check.clang-format" value="false" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="nodejs_package_manager_path" value="npm" />
+    <property name="restartRequiresConfirmation" value="false" />
   </component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
@@ -109,12 +80,12 @@
     </key>
   </component>
   <component name="RunManager">
-    <configuration default="true" type="CLionExternalRunConfiguration" factoryName="Application" REDIRECT_INPUT="false" PASS_PARENT_ENVS_2="true">
+    <configuration default="true" type="CMakeRunConfiguration" factoryName="Application" REDIRECT_INPUT="false" PASS_PARENT_ENVS_2="true">
       <method v="2">
-        <option name="CLION.EXTERNAL.BUILD" enabled="true" />
+        <option name="com.jetbrains.cidr.execution.CidrBuildBeforeRunTaskProvider$BuildBeforeRunTask" enabled="true" />
       </method>
     </configuration>
-    <configuration name="ft_ls" type="CMakeRunConfiguration" factoryName="Application" PROGRAM_PARAMS="CMakeLists.txt README.md author ft_ls libft test" REDIRECT_INPUT="false" PASS_PARENT_ENVS_2="true" PROJECT_NAME="Project" TARGET_NAME="ft_ls" CONFIG_NAME="Debug" RUN_TARGET_PROJECT_NAME="Project" RUN_TARGET_NAME="ft_ls">
+    <configuration name="ft_ls" type="CMakeRunConfiguration" factoryName="Application" REDIRECT_INPUT="false" PASS_PARENT_ENVS_2="true" PROJECT_NAME="ft_ls" TARGET_NAME="ft_ls" CONFIG_NAME="Debug" RUN_TARGET_PROJECT_NAME="ft_ls" RUN_TARGET_NAME="ft_ls">
       <method v="2">
         <option name="com.jetbrains.cidr.execution.CidrBuildBeforeRunTaskProvider$BuildBeforeRunTask" enabled="true" />
       </method>
@@ -138,7 +109,10 @@
       <workItem from="1602323099770" duration="9715000" />
       <workItem from="1602339236271" duration="1536000" />
       <workItem from="1602407213869" duration="2910000" />
-      <workItem from="1602418151195" duration="6627000" />
+      <workItem from="1602418151195" duration="7080000" />
+      <workItem from="1602492353902" duration="667000" />
+      <workItem from="1602493274098" duration="3015000" />
+      <workItem from="1602500217096" duration="6851000" />
     </task>
     <task id="LOCAL-00001" summary="getting started">
       <created>1602080007806</created>
@@ -178,54 +152,62 @@
       <screen x="0" y="23" width="2560" height="1337" />
     </state>
     <state x="1251" y="505" key="#Other_File_Types/0.23.2560.1337@0.23.2560.1337" timestamp="1602071826724" />
-    <state x="744" y="382" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1602340024284">
+    <state x="744" y="382" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1602493539066">
       <screen x="0" y="0" width="2560" height="1440" />
     </state>
-    <state x="744" y="382" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.0.2560.1440@0.0.2560.1440" timestamp="1602340024284" />
+    <state x="744" y="382" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.0.2560.1440@0.0.2560.1440" timestamp="1602493539066" />
     <state x="1001" y="529" key="#com.intellij.fileTypes.FileTypeChooser" timestamp="1602330097830">
       <screen x="0" y="0" width="2560" height="1440" />
     </state>
     <state x="1001" y="529" key="#com.intellij.fileTypes.FileTypeChooser/0.0.2560.1440@0.0.2560.1440" timestamp="1602330097830" />
-    <state width="2518" height="520" key="GridCell.Tab.0.bottom" timestamp="1602340775100">
+    <state width="2518" height="424" key="GridCell.Tab.0.bottom" timestamp="1602497783408">
+      <screen x="0" y="23" width="2560" height="1337" />
+    </state>
+    <state width="2518" height="520" key="GridCell.Tab.0.bottom/0.0.2560.1440@0.0.2560.1440" timestamp="1602493662877" />
+    <state width="2518" height="424" key="GridCell.Tab.0.bottom/0.23.2560.1337@0.23.2560.1337" timestamp="1602497783408" />
+    <state width="2518" height="424" key="GridCell.Tab.0.center" timestamp="1602497783407">
+      <screen x="0" y="23" width="2560" height="1337" />
+    </state>
+    <state width="2518" height="520" key="GridCell.Tab.0.center/0.0.2560.1440@0.0.2560.1440" timestamp="1602493662876" />
+    <state width="2518" height="424" key="GridCell.Tab.0.center/0.23.2560.1337@0.23.2560.1337" timestamp="1602497783407" />
+    <state width="2518" height="424" key="GridCell.Tab.0.left" timestamp="1602497783407">
+      <screen x="0" y="23" width="2560" height="1337" />
+    </state>
+    <state width="2518" height="520" key="GridCell.Tab.0.left/0.0.2560.1440@0.0.2560.1440" timestamp="1602493662875" />
+    <state width="2518" height="424" key="GridCell.Tab.0.left/0.23.2560.1337@0.23.2560.1337" timestamp="1602497783407" />
+    <state width="2518" height="424" key="GridCell.Tab.0.right" timestamp="1602497783408">
+      <screen x="0" y="23" width="2560" height="1337" />
+    </state>
+    <state width="2518" height="520" key="GridCell.Tab.0.right/0.0.2560.1440@0.0.2560.1440" timestamp="1602493662877" />
+    <state width="2518" height="424" key="GridCell.Tab.0.right/0.23.2560.1337@0.23.2560.1337" timestamp="1602497783408" />
+    <state width="2518" height="520" key="GridCell.Tab.1.bottom" timestamp="1602497783401">
+      <screen x="0" y="23" width="2560" height="1337" />
+    </state>
+    <state width="2518" height="520" key="GridCell.Tab.1.bottom/0.0.2560.1440@0.0.2560.1440" timestamp="1602493662878" />
+    <state width="2518" height="520" key="GridCell.Tab.1.bottom/0.23.2560.1337@0.23.2560.1337" timestamp="1602497783401" />
+    <state width="2518" height="520" key="GridCell.Tab.1.center" timestamp="1602497783400">
+      <screen x="0" y="23" width="2560" height="1337" />
+    </state>
+    <state width="2518" height="520" key="GridCell.Tab.1.center/0.0.2560.1440@0.0.2560.1440" timestamp="1602493662878" />
+    <state width="2518" height="520" key="GridCell.Tab.1.center/0.23.2560.1337@0.23.2560.1337" timestamp="1602497783400" />
+    <state width="2518" height="520" key="GridCell.Tab.1.left" timestamp="1602497783400">
+      <screen x="0" y="23" width="2560" height="1337" />
+    </state>
+    <state width="2518" height="520" key="GridCell.Tab.1.left/0.0.2560.1440@0.0.2560.1440" timestamp="1602493662877" />
+    <state width="2518" height="520" key="GridCell.Tab.1.left/0.23.2560.1337@0.23.2560.1337" timestamp="1602497783400" />
+    <state width="2518" height="520" key="GridCell.Tab.1.right" timestamp="1602497783401">
+      <screen x="0" y="23" width="2560" height="1337" />
+    </state>
+    <state width="2518" height="520" key="GridCell.Tab.1.right/0.0.2560.1440@0.0.2560.1440" timestamp="1602493662878" />
+    <state width="2518" height="520" key="GridCell.Tab.1.right/0.23.2560.1337@0.23.2560.1337" timestamp="1602497783401" />
+    <state width="640" height="204" key="ImportCMakeProjectWizard.bottomPanel" timestamp="1602493269964">
       <screen x="0" y="0" width="2560" height="1440" />
     </state>
-    <state width="2518" height="520" key="GridCell.Tab.0.bottom/0.0.2560.1440@0.0.2560.1440" timestamp="1602340775100" />
-    <state width="2518" height="520" key="GridCell.Tab.0.center" timestamp="1602340775099">
+    <state width="640" height="204" key="ImportCMakeProjectWizard.bottomPanel/0.0.2560.1440@0.0.2560.1440" timestamp="1602493269964" />
+    <state width="640" height="476" key="ImportCMakeProjectWizard.topPanel" timestamp="1602493269963">
       <screen x="0" y="0" width="2560" height="1440" />
     </state>
-    <state width="2518" height="520" key="GridCell.Tab.0.center/0.0.2560.1440@0.0.2560.1440" timestamp="1602340775099" />
-    <state width="2518" height="520" key="GridCell.Tab.0.left" timestamp="1602340775099">
-      <screen x="0" y="0" width="2560" height="1440" />
-    </state>
-    <state width="2518" height="520" key="GridCell.Tab.0.left/0.0.2560.1440@0.0.2560.1440" timestamp="1602340775099" />
-    <state width="2518" height="520" key="GridCell.Tab.0.right" timestamp="1602340775099">
-      <screen x="0" y="0" width="2560" height="1440" />
-    </state>
-    <state width="2518" height="520" key="GridCell.Tab.0.right/0.0.2560.1440@0.0.2560.1440" timestamp="1602340775099" />
-    <state width="2518" height="520" key="GridCell.Tab.1.bottom" timestamp="1602340775101">
-      <screen x="0" y="0" width="2560" height="1440" />
-    </state>
-    <state width="2518" height="520" key="GridCell.Tab.1.bottom/0.0.2560.1440@0.0.2560.1440" timestamp="1602340775101" />
-    <state width="2518" height="520" key="GridCell.Tab.1.center" timestamp="1602340775100">
-      <screen x="0" y="0" width="2560" height="1440" />
-    </state>
-    <state width="2518" height="520" key="GridCell.Tab.1.center/0.0.2560.1440@0.0.2560.1440" timestamp="1602340775100" />
-    <state width="2518" height="520" key="GridCell.Tab.1.left" timestamp="1602340775100">
-      <screen x="0" y="0" width="2560" height="1440" />
-    </state>
-    <state width="2518" height="520" key="GridCell.Tab.1.left/0.0.2560.1440@0.0.2560.1440" timestamp="1602340775100" />
-    <state width="2518" height="520" key="GridCell.Tab.1.right" timestamp="1602340775100">
-      <screen x="0" y="0" width="2560" height="1440" />
-    </state>
-    <state width="2518" height="520" key="GridCell.Tab.1.right/0.0.2560.1440@0.0.2560.1440" timestamp="1602340775100" />
-    <state width="640" height="204" key="ImportCMakeProjectWizard.bottomPanel" timestamp="1602339231233">
-      <screen x="0" y="0" width="2560" height="1440" />
-    </state>
-    <state width="640" height="204" key="ImportCMakeProjectWizard.bottomPanel/0.0.2560.1440@0.0.2560.1440" timestamp="1602339231233" />
-    <state width="640" height="476" key="ImportCMakeProjectWizard.topPanel" timestamp="1602339231232">
-      <screen x="0" y="0" width="2560" height="1440" />
-    </state>
-    <state width="640" height="476" key="ImportCMakeProjectWizard.topPanel/0.0.2560.1440@0.0.2560.1440" timestamp="1602339231232" />
+    <state width="640" height="476" key="ImportCMakeProjectWizard.topPanel/0.0.2560.1440@0.0.2560.1440" timestamp="1602493269963" />
     <state x="924" y="282" key="SettingsEditor" timestamp="1602071991848">
       <screen x="0" y="23" width="2560" height="1337" />
     </state>

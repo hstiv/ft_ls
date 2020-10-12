@@ -16,6 +16,11 @@
 # define OPT	"lRart"
 # define USAGE	"\nusage: ft_ls [-lRart] [file ...]\n"
 # define IL_OPT	"ft_ls: illegal option -- "
+# define ASC	1
+# define DESC	-1
+# define ASCII	1
+# define MTIME	2
+# define SIZE	3
 # define NOFILE "No such file or directory\n"
 
 /*
@@ -31,15 +36,17 @@ extern int errno;
 
 typedef struct 		s_stat
 {
-	char 			permission[10];
+	char 			permission[11];
 	int				nlink;
 	char 			*pw_name;
 	char 			*gr_name;
 	int 			size;
+	int 			mtime;
 	char 			*month;
 	char 			*day;
 	char 			*hour;
 	char 			*min;
+	int 			len[5];
 }					t_stat;
 
 typedef	struct		s_file
@@ -54,7 +61,7 @@ typedef	struct		s_file
 typedef struct 		s_data
 {
 	char			option[5];
-	int 			alley_mlen[3];
+	int 			alley_mlen[5];
 	t_file 			*arg_file;
 	int				arg_files_count;
 	int 			arg_dir_count;
@@ -76,10 +83,15 @@ int 				throw(char *s);
 t_file				*new_file(char *s);
 t_stat				*new_tstat(struct stat file_stat);
 t_file				*read_dir(char *path);
-void 				sort_files(t_file *files);
+void 				sort(t_file *files, int order, int sort_by);
 void				add_stack(t_file *file);
-
-
-
+t_file				*reverse_list(t_file *head);
+void				print(t_file *start);
+void 				print_l(t_file *file);
+t_file				*only_dirs(t_file *head);
+void				del_file(t_file *node);
+void				swap_files(t_file *p1, t_file *p2);
+size_t 				num_len(int n);
+void 				print_n_times(char c, int n);
 
 #endif

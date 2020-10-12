@@ -2,7 +2,7 @@ NAME	=	ft_ls
 
 SRCS	=	srcs/main.c srcs/var_setters.c \
 			srcs/option_reader.c srcs/read_dir.c \
-			srcs/sort.c srcs/setters.c srcs/stats.c $(LFT)
+			srcs/sort.c srcs/stats.c srcs/print_functions.c $(LFT)
 
 HEADER	=	includes/
 
