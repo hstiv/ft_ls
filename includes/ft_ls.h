@@ -85,7 +85,7 @@ t_stat				*new_tstat(struct stat file_stat);
 t_file				*read_dir(char *path);
 void 				sort(t_file *files, int sort_by);
 void				add_stack(t_file *file);
-void				print(t_file *start);
+void				print(t_file *start, char print_one);
 void 				print_l(t_file *file);
 t_file				*only_dirs(t_file *head);
 void				del_file(t_file *node);

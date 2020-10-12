@@ -75,7 +75,7 @@ AR = ar rc
 
 $(NAME):
 	@gcc $(CFLAGS) -c $(SRC)
-	$(AR) $@ *.o
+	@$(AR) $@ *.o
 	@ranlib $@
 
 all : $(NAME)

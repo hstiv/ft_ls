@@ -35,7 +35,7 @@ void 				print_l(t_file *file)
 	write(1, file->filename, ft_strlen(file->filename));
 }
 
-void				print(t_file *start)
+void				print(t_file *start, char print_one)
 {
 	t_file			*file;
 
@@ -49,7 +49,7 @@ void				print(t_file *start)
 			(data.option[0] == 1) ? print_l(file) :
 			write(1, file->filename, ft_strlen(file->filename));
 			(data.option[0] == 1) ? write(1, "\n", 1) : write(1, "\t", 1);
-			file = file->prev;
+			file = (print_one) ? NULL : file->prev;
 		}
 	}
 	else
@@ -59,7 +59,7 @@ void				print(t_file *start)
 			(data.option[0] == 1) ? print_l(file) :
 			write(1, file->filename, ft_strlen(file->filename));
 			(data.option[0] == 1) ? write(1, "\n", 1) : write(1, "\t", 1);
-			file = file->next;
+			file = (print_one) ? NULL : file->next;
 		}
 	}
 }

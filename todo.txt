@@ -1,0 +1,6 @@
+- Path is not handled
+- [-R] flag doesn't work
+- Output spaces
+- @ character in [-l]
+- Links
+- Leaks
