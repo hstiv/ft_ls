@@ -4,7 +4,7 @@ size_t 				num_len(int n)
 {
 	size_t 			l;
 
-	l = 0;
+	l = (n < 0) ? 1 : 0;
 	while (n)
 	{
 		n = n / 10;
@@ -15,7 +15,20 @@ size_t 				num_len(int n)
 
 static void 		set_permission(mode_t st_mode, t_stat *f_st)
 {
-	f_st->permission[0] = (S_ISDIR(st_mode)) ? 'd' : '-';
+	if ((st_mode & S_IFMT) == S_IFBLK)
+		f_st->permission[0] = 'b';
+	else if ((st_mode & S_IFMT) == S_IFCHR)
+		f_st->permission[0] = 'c';
+	else if ((st_mode & S_IFMT) == S_IFLNK)
+		f_st->permission[0] = 'l';
+	else if ((st_mode & S_IFMT) == S_IFDIR)
+		f_st->permission[0] = 'd';
+	else if ((st_mode & S_IFMT) == S_IFSOCK)
+		f_st->permission[0] = 's';
+	else if ((st_mode & S_IFMT) == S_IFIFO)
+		f_st->permission[0] = 'p';
+	else
+		f_st->permission[0] = '-';
 	f_st->permission[1] = (st_mode & S_IRUSR) ? 'r' : '-';
 	f_st->permission[2] = (st_mode & S_IWUSR) ? 'w' : '-';
 	f_st->permission[3] = (st_mode & S_IXUSR) ? 'x' : '-';
@@ -44,6 +57,20 @@ static void 		set_mtime(time_t *mtime, t_stat *f_st)
 	ft_arraydel((void **)time_str);
 }
 
+static void 	ally_setter(t_stat *new)
+{
+	new->len[0] = num_len(new->nlink) ;
+	new->len[1] = ft_strlen(new->pw_name);
+	new->len[2] = ft_strlen(new->gr_name);
+	new->len[3] = num_len(new->size);
+	new->len[4] = ft_strlen(new->day);
+	(data.alley_mlen[0] < new->len[0] + 1) ? data.alley_mlen[0] = new->len[0] + 1 : 0;
+	(data.alley_mlen[1] < new->len[1] + 1) ? data.alley_mlen[1] = new->len[1] + 1 : 0;
+	(data.alley_mlen[2] < new->len[2] + 2) ? data.alley_mlen[2] = new->len[2] + 2 : 0;
+	(data.alley_mlen[3] < new->len[3] + 2) ? data.alley_mlen[3] = new->len[3] + 2 : 0;
+	(data.alley_mlen[4] < new->len[4] + 1) ? data.alley_mlen[4] = new->len[4] + 1 : 0;
+}
+
 t_stat			*new_tstat(struct stat file_stat)
 {
 	t_stat		*new;
@@ -55,16 +82,8 @@ t_stat			*new_tstat(struct stat file_stat)
 	new->pw_name = getpwuid(file_stat.st_uid)->pw_name;
 	new->gr_name = getgrgid(file_stat.st_gid)->gr_name;
 	new->size = file_stat.st_size;
+	new->blocks = file_stat.st_blocks;
 	set_mtime(&file_stat.st_mtime, new);
-	new->len[0] = num_len(new->nlink) ;
-	new->len[1] = ft_strlen(new->pw_name);
-	new->len[2] = ft_strlen(new->gr_name);
-	new->len[3] = num_len(new->size);
-	new->len[4] = ft_strlen(new->day);
-	(data.alley_mlen[0] < new->len[0] + 1) ? data.alley_mlen[0] = new->len[0] + 1 : 0;
-	(data.alley_mlen[1] < new->len[1] + 1) ? data.alley_mlen[1] = new->len[1] + 1 : 0;
-	(data.alley_mlen[2] < new->len[2] + 2) ? data.alley_mlen[2] = new->len[2] + 2 : 0;
-	(data.alley_mlen[3] < new->len[3] + 2) ? data.alley_mlen[3] = new->len[3] + 2 : 0;
-	(data.alley_mlen[4] < new->len[4] + 1) ? data.alley_mlen[4] = new->len[4] + 1 : 0;
+	ally_setter(new);
 	return (new);
 }

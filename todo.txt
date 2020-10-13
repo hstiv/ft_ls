@@ -1,6 +1,6 @@
 - Path is not handled
-- [-R] flag doesn't work
-- Output spaces
+- [-R] flag doesn't work (path must be repaired)
+- Output spaces (without [-l])
 - @ character in [-l]
-- Links
+- Links (link's '-->' is left)
 - Leaks

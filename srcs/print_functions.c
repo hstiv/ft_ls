@@ -12,6 +12,24 @@ void 				print_n_times(char c, int n)
 	}
 }
 
+void 				print_dir_name(t_file *file)
+{
+	char 			*s;
+
+	if (data.arg_dir_count > 1)
+	{
+		if (file_path != NULL)
+			s = path_with_f_name(file->filename);
+		else
+			s = file->filename;
+		write(1, s, ft_strlen(s));
+		write(1, ":\n", 2);
+	}
+	write(1, "total ", 6);
+	ft_putnbr(file->f_stat->blocks);
+	write(1, "\n", 1);
+}
+
 void 				print_l(t_file *file)
 {
 	write(1, file->f_stat->permission, ft_strlen(file->f_stat->permission));

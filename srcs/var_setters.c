@@ -1,18 +1,5 @@
 #include "ft_ls.h"
 
-void			add_stack(t_file *file)
-{
-	t_stack		*new;
-	t_stack		*tmp;
-
-	if (!(new = (t_stack *)malloc(sizeof(t_stack))))
-		throw("memory ERROR\n");
-	new->file = file;
-	tmp = stack;
-	new->next = tmp;
-	stack = new;
-}
-
 void				swap_files(t_file *p1, t_file *p2)
 {
 	t_stat			*t_tmp;

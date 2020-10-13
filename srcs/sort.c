@@ -43,6 +43,7 @@ t_file				*only_dirs(t_file *head)
 {
 	t_file			*ptr;
 
+	ptr = head;
 	while (head)
 	{
 		if (head->f_stat->permission[0] == '-')
@@ -59,7 +60,7 @@ t_file				*only_dirs(t_file *head)
 			head = head->next;
 	}
 	head = ptr;
-	while (head->prev)
+	while (head && head->prev)
 		head = head->prev;
 	return (head);
 }

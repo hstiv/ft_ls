@@ -22,6 +22,7 @@
 # define MTIME	2
 # define SIZE	3
 # define NOFILE "No such file or directory\n"
+# define NOPEN	"Can not open directory"
 
 /*
 **_____________________Structure____________________*
@@ -46,6 +47,7 @@ typedef struct 		s_stat
 	char 			*day;
 	char 			*hour;
 	char 			*min;
+	int 			blocks;
 	int 			len[5];
 }					t_stat;
 
@@ -67,31 +69,42 @@ typedef struct 		s_data
 	int 			arg_dir_count;
 }					t_data;
 
-typedef	struct		s_stack
-{
-	t_file			*file;
-	struct s_stack	*next;
-}					t_stack;
-
-
 t_data				data;
-t_stack				*stack;
+char 				*file_path;
 
-void				set_data(void);
+/*
+**			srcs/option_reader.c			**
+*/
 void				arg_reader(int argc, char **argv);
-int 				throw(char *s);
-t_file				*new_file(char *s);
-t_stat				*new_tstat(struct stat file_stat);
-t_file				*read_dir(char *path);
-void 				sort(t_file *files, int sort_by);
-void				add_stack(t_file *file);
+/*
+**			srcs/print_functions.c			**
+*/
 void				print(t_file *start, char print_one);
 void 				print_l(t_file *file);
-t_file				*only_dirs(t_file *head);
-void				del_file(t_file *node);
-void				swap_files(t_file *p1, t_file *p2);
-size_t 				num_len(int n);
+void 				print_dir_name(t_file *file);
 void 				print_n_times(char c, int n);
-void 				arg_handler(void);
+/*
+**				srcs/read_dir.c				**
+*/
+t_file				*read_dir(char *path);
+t_file				*new_file(char *s);
+char 				*path_with_f_name(char *filename);
+/*
+**					srcs/sort.c				**
+*/
+t_file				*only_dirs(t_file *head);
+void 				sort(t_file *files, int sort_by);
+/*
+**				srcs/stats.c				**
+*/
+t_stat				*new_tstat(struct stat file_stat);
+size_t 				num_len(int n);
+/*
+**				srcs/var_setters.c			**
+*/
+void				set_data(void);
+void				del_file(t_file *node);
+int 				throw(char *s);
+void				swap_files(t_file *p1, t_file *p2);
 
 #endif
