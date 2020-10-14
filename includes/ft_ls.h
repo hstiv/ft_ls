@@ -70,7 +70,7 @@ typedef struct 		s_data
 }					t_data;
 
 t_data				data;
-char 				*file_path;
+char 				*curr_dir;
 
 /*
 **			srcs/option_reader.c			**
@@ -88,7 +88,9 @@ void 				print_n_times(char c, int n);
 */
 t_file				*read_dir(char *path);
 t_file				*new_file(char *s);
-char 				*path_with_f_name(char *filename);
+char 				*path_with_f_name(char *filename, char *path);
+char 				*rmladir(char *s);
+
 /*
 **					srcs/sort.c				**
 */
@@ -106,5 +108,9 @@ void				set_data(void);
 void				del_file(t_file *node);
 int 				throw(char *s);
 void				swap_files(t_file *p1, t_file *p2);
+/*
+**					srcs/main.c				**
+*/
+void 				ft_ls(t_file *ptr);
 
 #endif

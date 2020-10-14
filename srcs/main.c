@@ -1,29 +1,41 @@
 #include "ft_ls.h"
 
-static void 		ft_ls(t_file *ptr)
+static void			recursive(t_file *ptr)
 {
 	t_file			*files;
 	int 			print_enter;
+	char 			*s;
+
+	ptr = only_dirs(ptr);
+	print_enter = 0;
+	while (ptr)
+	{
+		(curr_dir == NULL) ? curr_dir = ft_strdup(".") : 0;
+		files = ptr;
+		(print_enter == 1) ? write(1, "\n", 1) : 0;
+		print_dir_name(ptr);
+		s = path_with_f_name(ptr->filename, curr_dir);
+		free(curr_dir);
+		curr_dir = s;
+		ft_ls(read_dir(curr_dir));
+		s = rmladir(curr_dir);
+		free(curr_dir);
+		curr_dir = s;
+		ptr = ptr->next;
+		print_enter = 1;
+		del_file(files);
+	}
+}
+
+void 		ft_ls(t_file *ptr)
+{
+	t_file			*files;
 
 	files = ptr;
-	print_enter = 0;
 	sort(files, (data.option[4]) ? MTIME : ASCII);
 	print(files, 0);
 	if (data.option[1] == 1)
-	{
-		ptr = only_dirs(files);
-		files = ptr;
-		while (ptr)
-		{
-			files = ptr;
-			(print_enter == 1) ? write(1, "\n", 1) : 0;
-			print_dir_name(ptr);
-			ft_ls(read_dir(ptr->filename));
-			ptr = ptr->next;
-			print_enter = 1;
-			del_file(files);
-		}
-	}
+		recursive(files);
 }
 
 static void			arg_handler(void)
@@ -53,7 +65,7 @@ static void			arg_handler(void)
 	}
 }
 
-static void 		curr_dir(void)
+static void 		current_dir(void)
 {
 	t_file 			*file;
 
@@ -70,7 +82,7 @@ int					main(int argc, char **argv)
 	set_data();
 	(argc > 1 && argv[1] != NULL) ? arg_reader(argc, argv) : 0;
 	if (data.arg_files_count == 0 || data.arg_file == NULL)
-		curr_dir();
+		current_dir();
 	else
 		arg_handler();
 	return (0);

@@ -18,7 +18,7 @@ void 				print_dir_name(t_file *file)
 
 	if (data.arg_dir_count > 1)
 	{
-		if (file_path != NULL)
+		if (curr_dir != NULL)
 			s = path_with_f_name(file->filename);
 		else
 			s = file->filename;
