@@ -23,12 +23,12 @@ static void 	file_reader(char *s)
 {
 	if (data.arg_file == NULL)
 	{
-		data.arg_file = new_file(s, NULL);
+		data.arg_file = new_file(s);
 		data.arg_files_count++;
 	}
 	else
 	{
-		data.arg_file->next = new_file(s, NULL);
+		data.arg_file->next = new_file(s);
 		data.arg_file->next->prev = data.arg_file;
 		data.arg_file = data.arg_file->next;
 		data.arg_files_count++;

@@ -1,5 +1,5 @@
-- Path is not handled
-- [-R] flag doesn't work (path must be repaired)
++ Path is not handled
++ [-R] flag doesn't work (path must be repaired)
 - Output spaces (without [-l])
 - @ character in [-l]
 - Links (link's '-->' is left)

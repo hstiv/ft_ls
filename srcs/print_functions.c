@@ -19,15 +19,18 @@ void 				print_dir_name(t_file *file)
 	if (data.arg_dir_count > 1)
 	{
 		if (curr_dir != NULL)
-			s = path_with_f_name(file->filename);
+			s = path_with_f_name(file->filename, curr_dir);
 		else
 			s = file->filename;
 		write(1, s, ft_strlen(s));
 		write(1, ":\n", 2);
 	}
-	write(1, "total ", 6);
-	ft_putnbr(file->f_stat->blocks);
-	write(1, "\n", 1);
+	if (data.option[0])
+	{
+		write(1, "total ", 6);
+		ft_putnbr(file->f_stat->blocks);
+		write(1, "\n", 1);
+	}
 }
 
 void 				print_l(t_file *file)

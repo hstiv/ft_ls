@@ -46,7 +46,7 @@ t_file				*only_dirs(t_file *head)
 	ptr = head;
 	while (head)
 	{
-		if (head->f_stat->permission[0] == '-')
+		if (head->f_stat->permission[0] != 'd')
 		{
 			if (head->next)
 				head->next->prev = head->prev;

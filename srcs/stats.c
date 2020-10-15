@@ -39,6 +39,7 @@ static void 		set_permission(mode_t st_mode, t_stat *f_st)
 	f_st->permission[8] = (st_mode & S_IWOTH) ? 'w' : '-';
 	f_st->permission[9] = (st_mode & S_IXOTH) ? 'x' : '-';
 	f_st->permission[10] = ' ';
+	f_st->permission[11] = '\0';
 }
 
 static void 		set_mtime(time_t *mtime, t_stat *f_st)
@@ -79,8 +80,8 @@ t_stat			*new_tstat(struct stat file_stat)
 		throw("memory ERROR\n");
 	set_permission(file_stat.st_mode, new);
 	new->nlink = file_stat.st_nlink;
-	new->pw_name = getpwuid(file_stat.st_uid)->pw_name;
-	new->gr_name = getgrgid(file_stat.st_gid)->gr_name;
+	new->pw_name = ft_strdup(getpwuid(file_stat.st_uid)->pw_name);
+	new->gr_name = ft_strdup(getgrgid(file_stat.st_gid)->gr_name);
 	new->size = file_stat.st_size;
 	new->blocks = file_stat.st_blocks;
 	set_mtime(&file_stat.st_mtime, new);

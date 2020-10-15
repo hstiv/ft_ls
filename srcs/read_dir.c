@@ -9,21 +9,27 @@ char 				*path_with_f_name(char *filename, char *path)
 	char 			*s;
 	char 			*result;
 
+	if (path == NULL)
+		return (NULL);
 	s = ft_strjoin(path, "/");
 	result = ft_strjoin(s, filename);
 	free(s);
 	return (result);
 }
 
-char 				*rmallocladir(char *s)
+static void 		set_xattr(t_file *new, char *s, char *fwp)
 {
-	int 			i;
-	int 			l;
-	char 			*result;
+	char 			*buf;
+	size_t 			size;
 
-	i = 0;
-	l = 0;
-	while ()
+	size = listxattr(((curr_dir) ? fwp : s), NULL, 0, XATTR_SHOWCOMPRESSION);
+	if (size < 0)
+		throw((curr_dir) ? fwp : s);
+	buf = (char *)malloc(sizeof(char) * size);
+	size = listxattr(((curr_dir) ? fwp : s), buf, size, XATTR_SHOWCOMPRESSION);
+	if (size > 0)
+		new->f_stat->permission[10] = '@';
+	free(buf);
 }
 
 t_file				*new_file(char *s)
@@ -37,8 +43,10 @@ t_file				*new_file(char *s)
 		fwp = path_with_f_name(s, curr_dir);
 		lstat((curr_dir) ? fwp : s, &file_stat);
 		new->f_stat = new_tstat(file_stat);
+		set_xattr(new, s, fwp);
 		if (new->f_stat->permission[0] == 'd')
 			data.arg_dir_count++;
+		(fwp != NULL) ? free(fwp) : 0;
 		new->next = NULL;
 		new->prev = NULL;
 		new->filename = ft_strdup(s);

@@ -19,6 +19,26 @@ int				throw(char *s)
 	exit(0);
 }
 
+char 				*rmallocladir(char *s)
+{
+	int 			i;
+	char 			*result;
+
+	i = 0;
+	while (s[i + 1] != '\0')
+		i++;
+	while (s[i] != '/' && i > 0)
+		i--;
+	if (i > 0)
+	{
+		result = ft_strncpy(ft_strnew(i), s, i);
+		free(s);
+		return (result);
+	}
+	free(s);
+	return (NULL);
+}
+
 void				del_file(t_file *node)
 {
 	free(node->f_stat->month);
@@ -44,5 +64,6 @@ void			set_data(void)
 	data.alley_mlen[2] = 0;
 	data.alley_mlen[3] = 0;
 	data.alley_mlen[4] = 0;
+	data.print_enter = 0;
 	data.arg_file = NULL;
 }

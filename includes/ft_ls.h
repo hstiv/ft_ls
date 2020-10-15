@@ -37,7 +37,7 @@ extern int errno;
 
 typedef struct 		s_stat
 {
-	char 			permission[11];
+	char 			permission[12];
 	int				nlink;
 	char 			*pw_name;
 	char 			*gr_name;
@@ -67,6 +67,7 @@ typedef struct 		s_data
 	t_file 			*arg_file;
 	int				arg_files_count;
 	int 			arg_dir_count;
+	int 			print_enter;
 }					t_data;
 
 t_data				data;
@@ -89,7 +90,7 @@ void 				print_n_times(char c, int n);
 t_file				*read_dir(char *path);
 t_file				*new_file(char *s);
 char 				*path_with_f_name(char *filename, char *path);
-char 				*rmladir(char *s);
+char 				*rmallocladir(char *s);
 
 /*
 **					srcs/sort.c				**
