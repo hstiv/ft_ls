@@ -54,6 +54,11 @@ void 				print_l(t_file *file)
 	write(1, file->f_stat->min, 2);
 	write(1, " ", 1);
 	write(1, file->filename, ft_strlen(file->filename));
+	if (file->f_stat->permission[0] == 'l')
+	{
+		write(1, " -> ", 4);
+		ft_putstr(file->f_stat->linked_path);
+	}
 }
 
 void				print(t_file *start, char print_one)
@@ -69,7 +74,10 @@ void				print(t_file *start, char print_one)
 		{
 			(data.option[0] == 1) ? print_l(file) :
 			write(1, file->filename, ft_strlen(file->filename));
-			(data.option[0] == 1) ? write(1, "\n", 1) : write(1, "\t", 1);
+			if (data.option[0] == 1 || !file->prev)
+				write(1, "\n", 1);
+			else if (file->prev && !data.option[0])
+				write(1, "\t", 1);
 			file = (print_one) ? NULL : file->prev;
 		}
 	}
@@ -79,7 +87,10 @@ void				print(t_file *start, char print_one)
 		{
 			(data.option[0] == 1) ? print_l(file) :
 			write(1, file->filename, ft_strlen(file->filename));
-			(data.option[0] == 1) ? write(1, "\n", 1) : write(1, "\t", 1);
+			if (data.option[0] == 1 || !file->next)
+				write(1, "\n", 1);
+			else if (file->next && !data.option[0])
+				write(1, "\t", 1);
 			file = (print_one) ? NULL : file->next;
 		}
 	}

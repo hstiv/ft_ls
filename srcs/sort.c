@@ -1,5 +1,18 @@
 #include "ft_ls.h"
 
+char 				*path_with_f_name(char *filename, char *path)
+{
+	char 			*s;
+	char 			*result;
+
+	if (path == NULL)
+		return (NULL);
+	s = ft_strjoin(path, "/");
+	result = ft_strjoin(s, filename);
+	free(s);
+	return (result);
+}
+
 static void 		sort_conditions(t_file *ptr, int sort_by, int *swapped)
 {
 	int 			tmp;

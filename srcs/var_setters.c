@@ -13,10 +13,11 @@ void				swap_files(t_file *p1, t_file *p2)
 	p2->filename = c_tmp;
 }
 
-int				throw(char *s)
+int					throw(char *s)
 {
-	write(1, s, ft_strlen(s));
-	exit(0);
+	write(1, "ft_ls: ", 7);
+	perror(s);
+	exit(EXIT_FAILURE);
 }
 
 char 				*rmallocladir(char *s)

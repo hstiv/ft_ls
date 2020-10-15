@@ -77,7 +77,7 @@ t_stat			*new_tstat(struct stat file_stat)
 	t_stat		*new;
 
 	if (!(new = (t_stat *)malloc(sizeof(t_stat))))
-		throw("memory ERROR\n");
+		throw("malloc");
 	set_permission(file_stat.st_mode, new);
 	new->nlink = file_stat.st_nlink;
 	new->pw_name = ft_strdup(getpwuid(file_stat.st_uid)->pw_name);

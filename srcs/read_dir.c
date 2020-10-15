@@ -4,29 +4,34 @@
 ** fwp - filename with path *
 */
 
-char 				*path_with_f_name(char *filename, char *path)
+static void			set_link_path(t_file *new, char *path)
 {
-	char 			*s;
-	char 			*result;
+	size_t 			bufsize;
+	char			*buf;
+	ssize_t 		nbytes;
 
-	if (path == NULL)
-		return (NULL);
-	s = ft_strjoin(path, "/");
-	result = ft_strjoin(s, filename);
-	free(s);
-	return (result);
+	bufsize = new->f_stat->size + 1;
+	if ((buf = (char *)malloc(sizeof(char) * bufsize)))
+	{
+		nbytes = readlink(path, buf, bufsize);
+		new->f_stat->linked_path = ft_strnew(nbytes);
+		new->f_stat->linked_path = ft_strncpy(new->f_stat->linked_path, buf, nbytes);
+		free(buf);
+	}
+	else
+		throw(path);
 }
 
-static void 		set_xattr(t_file *new, char *s, char *fwp)
+static void 		set_xattr(t_file *new, char *s)
 {
 	char 			*buf;
 	size_t 			size;
 
-	size = listxattr(((curr_dir) ? fwp : s), NULL, 0, XATTR_SHOWCOMPRESSION);
+	size = listxattr(s, NULL, 0, XATTR_SHOWCOMPRESSION);
 	if (size < 0)
-		throw((curr_dir) ? fwp : s);
+		throw(s);
 	buf = (char *)malloc(sizeof(char) * size);
-	size = listxattr(((curr_dir) ? fwp : s), buf, size, XATTR_SHOWCOMPRESSION);
+	size = listxattr(s, buf, size, XATTR_SHOWCOMPRESSION);
 	if (size > 0)
 		new->f_stat->permission[10] = '@';
 	free(buf);
@@ -41,9 +46,12 @@ t_file				*new_file(char *s)
 	if ((new = (t_file *) malloc(sizeof(t_file))))
 	{
 		fwp = path_with_f_name(s, curr_dir);
-		lstat((curr_dir) ? fwp : s, &file_stat);
+		if ((lstat((curr_dir) ? fwp : s, &file_stat)) == -1)
+			throw(s);
 		new->f_stat = new_tstat(file_stat);
-		set_xattr(new, s, fwp);
+		if (new->f_stat->permission[0] == 'l')
+			set_link_path(new, (curr_dir) ? fwp : s);
+		set_xattr(new, (curr_dir) ? fwp : s);
 		if (new->f_stat->permission[0] == 'd')
 			data.arg_dir_count++;
 		(fwp != NULL) ? free(fwp) : 0;
@@ -52,7 +60,7 @@ t_file				*new_file(char *s)
 		new->filename = ft_strdup(s);
 		return (new);
 	}
-	throw("memory ERROR\n");
+	throw(s);
 	return (NULL);
 }
 
@@ -72,7 +80,7 @@ t_file				*read_dir(char *path)
 	struct	dirent	*el;
 
 	if ((dirp = opendir(path)) == NULL)
-		throw(NOPEN);
+		throw(path);
 	start = NULL;
 	el = NULL;
 	while ((el = readdir(dirp)) != NULL)

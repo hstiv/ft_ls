@@ -21,8 +21,7 @@
 # define ASCII	1
 # define MTIME	2
 # define SIZE	3
-# define NOFILE "No such file or directory\n"
-# define NOPEN	"Can not open directory"
+# define NOFILE "No such file or directory"
 
 /*
 **_____________________Structure____________________*
@@ -48,6 +47,7 @@ typedef struct 		s_stat
 	char 			*hour;
 	char 			*min;
 	int 			blocks;
+	char 			*linked_path;
 	int 			len[5];
 }					t_stat;
 
@@ -107,7 +107,7 @@ size_t 				num_len(int n);
 */
 void				set_data(void);
 void				del_file(t_file *node);
-int 				throw(char *s);
+int					throw(char *s);
 void				swap_files(t_file *p1, t_file *p2);
 /*
 **					srcs/main.c				**
