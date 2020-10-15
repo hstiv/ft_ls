@@ -1,8 +1,20 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   stats.c                                            :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: hstiv <satmak335@gmail.com>                +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2020/10/15 19:19:10 by hstiv             #+#    #+#             */
+/*   Updated: 2020/10/15 19:19:11 by hstiv            ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "ft_ls.h"
 
-size_t 				num_len(int n)
+size_t				num_len(int n)
 {
-	size_t 			l;
+	size_t			l;
 
 	l = (n < 0) ? 1 : 0;
 	while (n)
@@ -13,7 +25,7 @@ size_t 				num_len(int n)
 	return (l);
 }
 
-static void 		set_permission(mode_t st_mode, t_stat *f_st)
+static void			set_permission(mode_t st_mode, t_stat *f_st)
 {
 	if ((st_mode & S_IFMT) == S_IFBLK)
 		f_st->permission[0] = 'b';
@@ -42,10 +54,10 @@ static void 		set_permission(mode_t st_mode, t_stat *f_st)
 	f_st->permission[11] = '\0';
 }
 
-static void 		set_mtime(time_t *mtime, t_stat *f_st)
+static void			set_mtime(time_t *mtime, t_stat *f_st)
 {
 	char			**s;
-	char 			**time_str;
+	char			**time_str;
 
 	f_st->mtime = *mtime;
 	s = ft_strsplit(ctime(mtime), ' ');
@@ -58,23 +70,28 @@ static void 		set_mtime(time_t *mtime, t_stat *f_st)
 	ft_arraydel((void **)time_str);
 }
 
-static void 	ally_setter(t_stat *new)
+static void			ally_setter(t_stat *new)
 {
-	new->len[0] = num_len(new->nlink) ;
+	new->len[0] = num_len(new->nlink);
 	new->len[1] = ft_strlen(new->pw_name);
 	new->len[2] = ft_strlen(new->gr_name);
 	new->len[3] = num_len(new->size);
 	new->len[4] = ft_strlen(new->day);
-	(data.alley_mlen[0] < new->len[0] + 1) ? data.alley_mlen[0] = new->len[0] + 1 : 0;
-	(data.alley_mlen[1] < new->len[1] + 1) ? data.alley_mlen[1] = new->len[1] + 1 : 0;
-	(data.alley_mlen[2] < new->len[2] + 2) ? data.alley_mlen[2] = new->len[2] + 2 : 0;
-	(data.alley_mlen[3] < new->len[3] + 2) ? data.alley_mlen[3] = new->len[3] + 2 : 0;
-	(data.alley_mlen[4] < new->len[4] + 1) ? data.alley_mlen[4] = new->len[4] + 1 : 0;
+	if (g_data.alley_mlen[0] < new->len[0] + 1)
+		g_data.alley_mlen[0] = new->len[0] + 1;
+	if (g_data.alley_mlen[1] < new->len[1] + 1)
+		g_data.alley_mlen[1] = new->len[1] + 1;
+	if (g_data.alley_mlen[2] < new->len[2] + 2)
+		g_data.alley_mlen[2] = new->len[2] + 2;
+	if (g_data.alley_mlen[3] < new->len[3] + 2)
+		g_data.alley_mlen[3] = new->len[3] + 2;
+	if (g_data.alley_mlen[4] < new->len[4] + 1)
+		g_data.alley_mlen[4] = new->len[4] + 1;
 }
 
-t_stat			*new_tstat(struct stat file_stat)
+t_stat				*new_tstat(struct stat file_stat)
 {
-	t_stat		*new;
+	t_stat			*new;
 
 	if (!(new = (t_stat *)malloc(sizeof(t_stat))))
 		throw("malloc");

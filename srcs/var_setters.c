@@ -1,9 +1,21 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   var_setters.c                                      :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: hstiv <satmak335@gmail.com>                +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2020/10/15 19:18:42 by hstiv             #+#    #+#             */
+/*   Updated: 2020/10/15 19:18:44 by hstiv            ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "ft_ls.h"
 
 void				swap_files(t_file *p1, t_file *p2)
 {
 	t_stat			*t_tmp;
-	char 			*c_tmp;
+	char			*c_tmp;
 
 	t_tmp = p1->f_stat;
 	c_tmp = p1->filename;
@@ -20,10 +32,10 @@ int					throw(char *s)
 	exit(EXIT_FAILURE);
 }
 
-char 				*rmallocladir(char *s)
+char				*rmallocladir(char *s)
 {
-	int 			i;
-	char 			*result;
+	int				i;
+	char			*result;
 
 	i = 0;
 	while (s[i + 1] != '\0')
@@ -51,20 +63,20 @@ void				del_file(t_file *node)
 	free(node);
 }
 
-void			set_data(void)
+void				set_data(void)
 {
-	data.option[0] = 0;
-	data.option[1] = 0;
-	data.option[2] = 0;
-	data.option[3] = 0;
-	data.option[4] = 0;
-	data.arg_files_count = 0;
-	data.arg_dir_count = 0;
-	data.alley_mlen[0] = 0;
-	data.alley_mlen[1] = 0;
-	data.alley_mlen[2] = 0;
-	data.alley_mlen[3] = 0;
-	data.alley_mlen[4] = 0;
-	data.print_enter = 0;
-	data.arg_file = NULL;
+	g_data.option[0] = 0;
+	g_data.option[1] = 0;
+	g_data.option[2] = 0;
+	g_data.option[3] = 0;
+	g_data.option[4] = 0;
+	g_data.arg_files_count = 0;
+	g_data.arg_dir_count = 0;
+	g_data.alley_mlen[0] = 0;
+	g_data.alley_mlen[1] = 0;
+	g_data.alley_mlen[2] = 0;
+	g_data.alley_mlen[3] = 0;
+	g_data.alley_mlen[4] = 0;
+	g_data.print_enter = 0;
+	g_data.arg_file = NULL;
 }

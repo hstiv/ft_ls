@@ -1,9 +1,21 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   sort.c                                             :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: hstiv <satmak335@gmail.com>                +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2020/10/15 19:18:36 by hstiv             #+#    #+#             */
+/*   Updated: 2020/10/15 19:18:38 by hstiv            ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "ft_ls.h"
 
-char 				*path_with_f_name(char *filename, char *path)
+char				*path_with_f_name(char *filename, char *path)
 {
-	char 			*s;
-	char 			*result;
+	char			*s;
+	char			*result;
 
 	if (path == NULL)
 		return (NULL);
@@ -13,9 +25,9 @@ char 				*path_with_f_name(char *filename, char *path)
 	return (result);
 }
 
-static void 		sort_conditions(t_file *ptr, int sort_by, int *swapped)
+static void			sort_conditions(t_file *ptr, int sort_by, int *swapped)
 {
-	int 			tmp;
+	int				tmp;
 
 	tmp = 0;
 	if (sort_by == MTIME)
@@ -29,14 +41,14 @@ static void 		sort_conditions(t_file *ptr, int sort_by, int *swapped)
 	}
 }
 
-void 				sort(t_file *files, int sort_by)
+void				sort(t_file *files, int sort_by)
 {
 	t_file			*ptr;
 	t_file			*ptr1;
 	int				swapped;
 
 	if (files == NULL)
-		return;
+		return ;
 	ptr1 = NULL;
 	swapped = 1;
 	while (swapped)

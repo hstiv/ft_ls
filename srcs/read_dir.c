@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   read_dir.c                                         :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: hstiv <satmak335@gmail.com>                +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2020/10/15 19:18:30 by hstiv             #+#    #+#             */
+/*   Updated: 2020/10/15 19:18:32 by hstiv            ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "ft_ls.h"
 
 /*
@@ -6,26 +18,28 @@
 
 static void			set_link_path(t_file *new, char *path)
 {
-	size_t 			bufsize;
+	size_t			bufsize;
 	char			*buf;
-	ssize_t 		nbytes;
+	ssize_t			nbytes;
+	char			*s;
 
 	bufsize = new->f_stat->size + 1;
 	if ((buf = (char *)malloc(sizeof(char) * bufsize)))
 	{
 		nbytes = readlink(path, buf, bufsize);
 		new->f_stat->linked_path = ft_strnew(nbytes);
-		new->f_stat->linked_path = ft_strncpy(new->f_stat->linked_path, buf, nbytes);
+		s = ft_strncpy(ft_strnew(nbytes), buf, nbytes);
+		new->f_stat->linked_path = s;
 		free(buf);
 	}
 	else
 		throw(path);
 }
 
-static void 		set_xattr(t_file *new, char *s)
+static void			set_xattr(t_file *new, char *s)
 {
-	char 			*buf;
-	size_t 			size;
+	char			*buf;
+	size_t			size;
 
 	size = listxattr(s, NULL, 0, XATTR_SHOWCOMPRESSION);
 	if (size < 0)
@@ -43,17 +57,17 @@ t_file				*new_file(char *s)
 	struct stat		file_stat;
 	char			*fwp;
 
-	if ((new = (t_file *) malloc(sizeof(t_file))))
+	if ((new = (t_file *)malloc(sizeof(t_file))))
 	{
-		fwp = path_with_f_name(s, curr_dir);
-		if ((lstat((curr_dir) ? fwp : s, &file_stat)) == -1)
+		fwp = path_with_f_name(s, g_curr_dir);
+		if ((lstat((g_curr_dir) ? fwp : s, &file_stat)) == -1)
 			throw(s);
 		new->f_stat = new_tstat(file_stat);
 		if (new->f_stat->permission[0] == 'l')
-			set_link_path(new, (curr_dir) ? fwp : s);
-		set_xattr(new, (curr_dir) ? fwp : s);
+			set_link_path(new, (g_curr_dir) ? fwp : s);
+		set_xattr(new, (g_curr_dir) ? fwp : s);
 		if (new->f_stat->permission[0] == 'd')
-			data.arg_dir_count++;
+			g_data.arg_dir_count++;
 		(fwp != NULL) ? free(fwp) : 0;
 		new->next = NULL;
 		new->prev = NULL;
@@ -77,7 +91,7 @@ t_file				*read_dir(char *path)
 	DIR				*dirp;
 	t_file			*start;
 	t_file			*curr;
-	struct	dirent	*el;
+	struct dirent	*el;
 
 	if ((dirp = opendir(path)) == NULL)
 		throw(path);
@@ -85,7 +99,7 @@ t_file				*read_dir(char *path)
 	el = NULL;
 	while ((el = readdir(dirp)) != NULL)
 	{
-		if (!data.option[2] && el->d_name[0] == '.')
+		if (!g_data.option[2] && el->d_name[0] == '.')
 			continue ;
 		if (start == NULL)
 		{

@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_ls.h                                            :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: hstiv <satmak335@gmail.com>                +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2020/10/15 19:19:28 by hstiv             #+#    #+#             */
+/*   Updated: 2020/10/15 19:19:31 by hstiv            ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #ifndef FT_LS_H
 # define FT_LS_H
 
@@ -10,7 +22,7 @@
 # include <sys/xattr.h>
 # include <time.h>
 # include <sys/errno.h>
-#include <grp.h>
+# include <grp.h>
 # include "libft.h"
 
 # define OPT	"lRart"
@@ -32,46 +44,44 @@
 **__________________________________________________*
 */
 
-extern int errno;
-
-typedef struct 		s_stat
+typedef struct		s_stat
 {
-	char 			permission[12];
+	char			permission[12];
 	int				nlink;
-	char 			*pw_name;
-	char 			*gr_name;
-	int 			size;
-	int 			mtime;
-	char 			*month;
-	char 			*day;
-	char 			*hour;
-	char 			*min;
-	int 			blocks;
-	char 			*linked_path;
-	int 			len[5];
+	char			*pw_name;
+	char			*gr_name;
+	int				size;
+	int				mtime;
+	char			*month;
+	char			*day;
+	char			*hour;
+	char			*min;
+	int				blocks;
+	char			*linked_path;
+	int				len[5];
 }					t_stat;
 
 typedef	struct		s_file
 {
-	char 			*filename;
+	char			*filename;
 	t_stat			*f_stat;
-	struct	s_file	*prev;
-	struct	s_file	*next;
+	struct s_file	*prev;
+	struct s_file	*next;
 
 }					t_file;
 
-typedef struct 		s_data
+typedef struct		s_data
 {
 	char			option[5];
-	int 			alley_mlen[5];
-	t_file 			*arg_file;
+	int				alley_mlen[5];
+	t_file			*arg_file;
 	int				arg_files_count;
-	int 			arg_dir_count;
-	int 			print_enter;
+	int				arg_dir_count;
+	int				print_enter;
 }					t_data;
 
-t_data				data;
-char 				*curr_dir;
+t_data				g_data;
+char				*g_curr_dir;
 
 /*
 **			srcs/option_reader.c			**
@@ -81,27 +91,27 @@ void				arg_reader(int argc, char **argv);
 **			srcs/print_functions.c			**
 */
 void				print(t_file *start, char print_one);
-void 				print_l(t_file *file);
-void 				print_dir_name(t_file *file);
-void 				print_n_times(char c, int n);
+void				print_l(t_file *file);
+void				print_dir_name(t_file *file);
+void				print_n_times(char c, int n);
 /*
 **				srcs/read_dir.c				**
 */
 t_file				*read_dir(char *path);
 t_file				*new_file(char *s);
-char 				*path_with_f_name(char *filename, char *path);
-char 				*rmallocladir(char *s);
+char				*path_with_f_name(char *filename, char *path);
+char				*rmallocladir(char *s);
 
 /*
 **					srcs/sort.c				**
 */
 t_file				*only_dirs(t_file *head);
-void 				sort(t_file *files, int sort_by);
+void				sort(t_file *files, int sort_by);
 /*
 **				srcs/stats.c				**
 */
 t_stat				*new_tstat(struct stat file_stat);
-size_t 				num_len(int n);
+size_t				num_len(int n);
 /*
 **				srcs/var_setters.c			**
 */
@@ -112,6 +122,6 @@ void				swap_files(t_file *p1, t_file *p2);
 /*
 **					srcs/main.c				**
 */
-void 				ft_ls(t_file *ptr);
+void				ft_ls(t_file *ptr);
 
 #endif

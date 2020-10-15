@@ -4,3 +4,6 @@
 + Links (link's '-->' is left)
 - Leaks
 - Look for mistakes
++ Norma
+- Rlr
+- Rlra
