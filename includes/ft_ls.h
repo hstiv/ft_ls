@@ -107,6 +107,8 @@ char				*rmallocladir(char *s);
 */
 t_file				*only_dirs(t_file *head);
 void				sort(t_file *files, int sort_by);
+int					get_block_size(char *s);
+
 /*
 **				srcs/stats.c				**
 */

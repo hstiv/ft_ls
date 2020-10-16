@@ -6,7 +6,7 @@
 /*   By: hstiv <satmak335@gmail.com>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/15 19:18:03 by hstiv             #+#    #+#             */
-/*   Updated: 2020/10/15 19:18:12 by hstiv            ###   ########.fr       */
+/*   Updated: 2020/10/15 20:13:28 by hstiv            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,18 +18,24 @@ static void			recursive(t_file *ptr)
 	char			*s;
 
 	ptr = only_dirs(ptr);
+	if (g_data.option[3])
+		while (ptr && ptr->next)
+			ptr = ptr->next;
 	while (ptr)
 	{
-		(g_curr_dir == NULL) ? g_curr_dir = ft_strdup(".") : 0;
 		files = ptr;
-		(g_data.print_enter == 1) ? write(1, "\n", 1) : 0;
-		print_dir_name(ptr);
-		s = path_with_f_name(ptr->filename, g_curr_dir);
-		free(g_curr_dir);
-		g_curr_dir = s;
-		ft_ls(read_dir(g_curr_dir));
-		g_curr_dir = rmallocladir(g_curr_dir);
-		ptr = ptr->next;
+		if (ft_strcmp(files->filename, ".") && ft_strcmp(files->filename, ".."))
+		{
+			(g_curr_dir == NULL) ? g_curr_dir = ft_strdup(".") : 0;
+			(g_data.print_enter == 1) ? write(1, "\n", 1) : 0;
+			print_dir_name(ptr);
+			s = path_with_f_name(ptr->filename, g_curr_dir);
+			free(g_curr_dir);
+			g_curr_dir = s;
+			ft_ls(read_dir(g_curr_dir));
+			g_curr_dir = rmallocladir(g_curr_dir);
+		}
+		ptr = (g_data.option[3]) ? ptr->prev : ptr->next;
 		del_file(files);
 	}
 }
@@ -90,7 +96,7 @@ static void			current_dir(void)
 	if (g_data.option[0])
 	{
 		write(1, "total ", 6);
-		ft_putnbr(file->f_stat->blocks);
+		ft_putnbr(get_block_size("."));
 		write(1, "\n", 1);
 	}
 	ft_ls(read_dir("."));

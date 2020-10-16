@@ -6,11 +6,35 @@
 /*   By: hstiv <satmak335@gmail.com>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/15 19:18:36 by hstiv             #+#    #+#             */
-/*   Updated: 2020/10/15 19:18:38 by hstiv            ###   ########.fr       */
+/*   Updated: 2020/10/15 19:58:17 by hstiv            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_ls.h"
+
+int					get_block_size(char *s)
+{
+	DIR				*d;
+	struct dirent	*el;
+	struct stat		filestat;
+	int				size;
+	char			*path;
+
+	if (!(d = opendir(s)))
+		throw(s);
+	size = 0;
+	while ((el = readdir(d)) != NULL)
+	{
+		if (el->d_name[0] == '.')
+			continue ;
+		path = path_with_f_name(el->d_name, s);
+		stat(path, &filestat);
+		size += filestat.st_blocks;
+		free(path);
+	}
+	closedir(d);
+	return (size);
+}
 
 char				*path_with_f_name(char *filename, char *path)
 {

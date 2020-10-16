@@ -28,19 +28,17 @@ void				print_dir_name(t_file *file)
 {
 	char			*s;
 
+	s = (g_curr_dir != NULL) ?
+	path_with_f_name(file->filename, g_curr_dir) : file->filename;
 	if (g_data.arg_dir_count > 1)
 	{
-		if (g_curr_dir != NULL)
-			s = path_with_f_name(file->filename, g_curr_dir);
-		else
-			s = file->filename;
 		write(1, s, ft_strlen(s));
 		write(1, ":\n", 2);
 	}
 	if (g_data.option[0])
 	{
 		write(1, "total ", 6);
-		ft_putnbr(file->f_stat->blocks);
+		ft_putnbr(get_block_size(s));
 		write(1, "\n", 1);
 	}
 }
@@ -82,10 +80,7 @@ static void			print_reversed(t_file *start, char print_one)
 	{
 		(g_data.option[0] == 1) ? print_l(file) :
 		write(1, file->filename, ft_strlen(file->filename));
-		if (g_data.option[0] == 1 || !file->next)
-			write(1, "\n", 1);
-		else if (file->next && !g_data.option[0])
-			write(1, "\t", 1);
+		write(1, "\n", 1);
 		file = (print_one) ? NULL : file->next;
 	}
 }
@@ -103,10 +98,7 @@ void				print(t_file *start, char print_one)
 		{
 			(g_data.option[0] == 1) ? print_l(file) :
 			write(1, file->filename, ft_strlen(file->filename));
-			if (g_data.option[0] == 1 || !file->prev)
-				write(1, "\n", 1);
-			else if (file->prev && !g_data.option[0])
-				write(1, "\t", 1);
+			write(1, "\n", 1);
 			file = (print_one) ? NULL : file->prev;
 		}
 	}

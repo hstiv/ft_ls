@@ -25,7 +25,8 @@ static	void	option_parsing(char *s)
 		{
 			write(1, IL_OPT, ft_strlen(IL_OPT));
 			write(1, &(*s), 1);
-			throw(USAGE);
+			write(1, USAGE, ft_strlen(USAGE));
+			exit(EXIT_FAILURE);
 		}
 		s++;
 	}
