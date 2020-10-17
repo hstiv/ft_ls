@@ -84,9 +84,9 @@ static void			arg_handler(void)
 	{
 		file = g_data.arg_file;
 		(print_enter == 1) ? write(1, "\n", 1) : 0;
-		g_curr_dir = ft_strdup(g_data.arg_file->filename);
-		print_dir_name(g_data.arg_file);
-		ft_ls(read_dir(g_data.arg_file->filename));
+		print_dir_name(file);
+		g_curr_dir = ft_strdup(file->filename);
+		ft_ls(read_dir(file->filename));
 		free(g_curr_dir);
 		g_curr_dir = NULL;
 		g_data.arg_file = g_data.arg_file->next;

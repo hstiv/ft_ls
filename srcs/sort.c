@@ -25,7 +25,7 @@ int					get_block_size(char *s)
 	size = 0;
 	while ((el = readdir(d)) != NULL)
 	{
-		if (el->d_name[0] == '.')
+		if (el->d_name[0] == '.' && g_data.option[2] == 0)
 			continue ;
 		path = path_with_f_name(el->d_name, s);
 		stat(path, &filestat);

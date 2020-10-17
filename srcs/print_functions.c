@@ -29,7 +29,7 @@ void				print_dir_name(t_file *file)
 	char			*s;
 
 	s = (g_curr_dir != NULL) ?
-	path_with_f_name(file->filename, g_curr_dir) : file->filename;
+	path_with_f_name(file->filename, g_curr_dir) : ft_strdup(file->filename);
 	if (g_data.arg_dir_count > 1)
 	{
 		write(1, s, ft_strlen(s));

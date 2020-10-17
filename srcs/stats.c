@@ -16,6 +16,8 @@ size_t				num_len(int n)
 {
 	size_t			l;
 
+	if (n == 0)
+		return (1);
 	l = (n < 0) ? 1 : 0;
 	while (n)
 	{
