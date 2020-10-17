@@ -24,16 +24,20 @@ static void			set_link_path(t_file *new, char *path)
 	char			*s;
 
 	bufsize = new->f_stat->size + 1;
-	if ((buf = (char *)malloc(sizeof(char) * bufsize)))
+	if (new->f_stat->permission[0] == 'l')
 	{
-		nbytes = readlink(path, buf, bufsize);
-		new->f_stat->linked_path = ft_strnew(nbytes);
-		s = ft_strncpy(ft_strnew(nbytes), buf, nbytes);
-		new->f_stat->linked_path = s;
-		free(buf);
+		if ((buf = (char *)malloc(sizeof(char) * bufsize)))
+		{
+			nbytes = readlink(path, buf, bufsize);
+			s = ft_strncpy(ft_strnew(nbytes), buf, nbytes);
+			new->f_stat->linked_path = s;
+			free(buf);
+		}
+		else
+			throw(path);
 	}
 	else
-		throw(path);
+		new->f_stat->linked_path = NULL;
 }
 
 static void			set_xattr(t_file *new, char *s)
@@ -63,8 +67,7 @@ t_file				*new_file(char *s)
 		if ((lstat((g_curr_dir) ? fwp : s, &file_stat)) == -1)
 			throw(s);
 		new->f_stat = new_tstat(file_stat);
-		if (new->f_stat->permission[0] == 'l')
-			set_link_path(new, (g_curr_dir) ? fwp : s);
+		set_link_path(new, (g_curr_dir) ? fwp : s);
 		set_xattr(new, (g_curr_dir) ? fwp : s);
 		if (new->f_stat->permission[0] == 'd')
 			g_data.arg_dir_count++;

@@ -58,6 +58,10 @@ void				del_file(t_file *node)
 	free(node->f_stat->day);
 	free(node->f_stat->hour);
 	free(node->f_stat->min);
+	free(node->f_stat->gr_name);
+	free(node->f_stat->pw_name);
+	(node->f_stat->linked_path != NULL) ?
+	free(node->f_stat->linked_path) : 0;
 	free(node->f_stat);
 	free(node->filename);
 	free(node);
@@ -65,6 +69,7 @@ void				del_file(t_file *node)
 
 void				set_data(void)
 {
+	g_curr_dir = NULL;
 	g_data.option[0] = 0;
 	g_data.option[1] = 0;
 	g_data.option[2] = 0;

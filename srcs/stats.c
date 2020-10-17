@@ -68,6 +68,8 @@ static void			set_mtime(time_t *mtime, t_stat *f_st)
 	f_st->min = ft_strdup(time_str[1]);
 	ft_arraydel((void **)s);
 	ft_arraydel((void **)time_str);
+	free(s);
+	free(time_str);
 }
 
 static void			ally_setter(t_stat *new)
@@ -100,7 +102,6 @@ t_stat				*new_tstat(struct stat file_stat)
 	new->pw_name = ft_strdup(getpwuid(file_stat.st_uid)->pw_name);
 	new->gr_name = ft_strdup(getgrgid(file_stat.st_gid)->gr_name);
 	new->size = file_stat.st_size;
-	new->blocks = file_stat.st_blocks;
 	set_mtime(&file_stat.st_mtime, new);
 	ally_setter(new);
 	return (new);

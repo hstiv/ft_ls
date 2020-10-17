@@ -56,7 +56,6 @@ typedef struct		s_stat
 	char			*day;
 	char			*hour;
 	char			*min;
-	int				blocks;
 	char			*linked_path;
 	int				len[5];
 }					t_stat;

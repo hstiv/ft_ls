@@ -57,6 +57,13 @@ void				ft_ls(t_file *ptr)
 	g_data.alley_mlen[4] = 0;
 	if (g_data.option[1] == 1)
 		recursive(files);
+	else
+		while (files)
+		{
+			ptr = files;
+			files = files->next;
+			del_file(ptr);
+		}
 }
 
 static void			arg_handler(void)
@@ -111,5 +118,7 @@ int					main(int argc, char **argv)
 		current_dir();
 	else
 		arg_handler();
+	if (g_curr_dir != NULL)
+		free(g_curr_dir);
 	return (0);
 }

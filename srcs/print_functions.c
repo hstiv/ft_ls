@@ -41,6 +41,7 @@ void				print_dir_name(t_file *file)
 		ft_putnbr(get_block_size(s));
 		write(1, "\n", 1);
 	}
+	free(s);
 }
 
 void				print_l(t_file *file)

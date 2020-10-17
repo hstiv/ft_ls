@@ -1,9 +1,0 @@
-+ Path is not handled
-+ [-R] flag doesn't work (path must be repaired)
-+ @ character in [-l]
-+ Links (link's '-->' is left)
-- Leaks
-- Look for mistakes
-+ Norma
-- Rlr
-- Rlra
