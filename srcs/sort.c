@@ -21,7 +21,10 @@ int					get_block_size(char *s)
 	char			*path;
 
 	if (!(d = opendir(s)))
-		throw(s);
+	{
+		(errno != EACCES) ? throw(s) : perror(s);
+		return (-1);
+	}
 	size = 0;
 	while ((el = readdir(d)) != NULL)
 	{

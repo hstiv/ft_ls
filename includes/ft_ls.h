@@ -91,7 +91,7 @@ void				arg_reader(int argc, char **argv);
 */
 void				print(t_file *start, char print_one);
 void				print_l(t_file *file);
-void				print_dir_name(t_file *file);
+int					print_dir_name(t_file *file);
 void				print_n_times(char c, int n);
 /*
 **				srcs/read_dir.c				**

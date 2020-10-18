@@ -24,11 +24,10 @@ static void			recursive(t_file *ptr)
 	while (ptr)
 	{
 		files = ptr;
-		if (ft_strcmp(files->filename, ".") && ft_strcmp(files->filename, ".."))
+		if (ft_strcmp(files->filename, ".") && ft_strcmp(files->filename, "..") && (print_dir_name(ptr) >= 0))
 		{
 			(g_curr_dir == NULL) ? g_curr_dir = ft_strdup(".") : 0;
 			(g_data.print_enter == 1) ? write(1, "\n", 1) : 0;
-			print_dir_name(ptr);
 			s = path_with_f_name(ptr->filename, g_curr_dir);
 			free(g_curr_dir);
 			g_curr_dir = s;
@@ -84,11 +83,13 @@ static void			arg_handler(void)
 	{
 		file = g_data.arg_file;
 		(print_enter == 1) ? write(1, "\n", 1) : 0;
-		print_dir_name(file);
-		g_curr_dir = ft_strdup(file->filename);
-		ft_ls(read_dir(file->filename));
-		free(g_curr_dir);
-		g_curr_dir = NULL;
+		if (print_dir_name(file) >= 0)
+		{
+			g_curr_dir = ft_strdup(file->filename);
+			ft_ls(read_dir(file->filename));
+			free(g_curr_dir);
+			g_curr_dir = NULL;
+		}
 		g_data.arg_file = g_data.arg_file->next;
 		print_enter = 1;
 		del_file(file);

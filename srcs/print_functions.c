@@ -24,9 +24,10 @@ void				print_n_times(char c, int n)
 	}
 }
 
-void				print_dir_name(t_file *file)
+int					print_dir_name(t_file *file)
 {
 	char			*s;
+	int 			size;
 
 	s = (g_curr_dir != NULL) ?
 	path_with_f_name(file->filename, g_curr_dir) : ft_strdup(file->filename);
@@ -35,13 +36,14 @@ void				print_dir_name(t_file *file)
 		write(1, s, ft_strlen(s));
 		write(1, ":\n", 2);
 	}
-	if (g_data.option[0])
+	if (g_data.option[0] && (size = get_block_size(s)) != -1)
 	{
 		write(1, "total ", 6);
-		ft_putnbr(get_block_size(s));
+		ft_putnbr(size);
 		write(1, "\n", 1);
 	}
 	free(s);
+	return (size);
 }
 
 void				print_l(t_file *file)
